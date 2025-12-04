@@ -79,14 +79,41 @@ export const getProjectById = async (req, res) => {
 };
 
 // UPDATE PROJECT
+// UPDATE PROJECT
 export const updateProject = async (req, res) => {
   try {
+    const data = req.body;
+    const updates = {};
+
+    // Convert technologies string → array
+    if (data.technologies) {
+      updates.technologies = data.technologies
+        .split(",")
+        .map((item) => item.trim());
+    }
+
+    // Update text fields ONLY if provided
+    if (data.title) updates.title = data.title;
+    if (data.description) updates.description = data.description;
+    if (data.stack) updates.stack = data.stack;
+    if (data.github) updates.github = data.github;
+    if (data.live) updates.live = data.live;
+
+    // Check image update
+    if (req.file && req.file.path) {
+      updates.image = req.file.path; // Cloudinary URL automatically
+    }
+
     const updatedProject = await Project.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      updates,
       { new: true }
     );
-    res.json({ message: "Project updated successfully", updatedProject });
+
+    res.json({
+      message: "Project updated successfully",
+      updatedProject,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

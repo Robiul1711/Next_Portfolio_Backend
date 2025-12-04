@@ -15,7 +15,7 @@ const router = express.Router();
 // 🔐 Admin Protected Routes
 // router.post("/",  upload.single("image"), createProject);
 router.post("/", protect, upload.single("image"), createProject);
-router.put("/:id", protect, updateProject);
+router.put("/:id", protect, upload.single("image"), updateProject);
 router.delete("/:id", protect, deleteProject);
 
 // 🌐 Public Routes
