@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(("/", (req, res) => res.send("OK")));
+app.get(("/", (req, res) => res.status(200).json({ message: 'Welcome to my Portfolio API' })));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
