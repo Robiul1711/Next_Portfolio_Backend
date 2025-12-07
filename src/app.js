@@ -3,8 +3,9 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import projectRoutes from "./routes/project.routes.js";
 import blogRoutes from "./routes/blog.routes.js";
-import contactRoutes from "./routes/contact.routes.js";
-
+import contactRoutes from "./routes/contact.routes.js"
+import contactInfoRoutes from "./routes/contactInfo.routes.js";
+import footerRoutes from "./routes/footer.routes.js"
 const app = express();
 
 // Middleware
@@ -16,6 +17,9 @@ app.get(("/", (req, res) => res.status(200).json({ message: 'Welcome to my Portf
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api", contactRoutes);
+app.use("/api", contactInfoRoutes);
+app.use("/api", footerRoutes);
 // app.use("/api/blogs", blogRoutes);
 // app.use("/api/contact", contactRoutes);
 
