@@ -6,7 +6,6 @@ import { GoogleGenAI } from "@google/genai";
 import Chat from "../models/Chat.js";
 import { portfolioContext, portfolioKnowledgeBase } from "../dataStore/portfolioData.js";
 
-
 dotenv.config();
 
 const router = express.Router();
