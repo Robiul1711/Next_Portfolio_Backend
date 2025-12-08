@@ -6,6 +6,7 @@ import blogRoutes from "./routes/blog.routes.js";
 import contactRoutes from "./routes/contact.routes.js"
 import contactInfoRoutes from "./routes/contactInfo.routes.js";
 import footerRoutes from "./routes/footer.routes.js"
+import aiRoute from "./routes/aiChat.routes.js"
 const app = express();
 
 // Middleware
@@ -20,6 +21,7 @@ app.use("/api/projects", projectRoutes);
 app.use("/api", contactRoutes);
 app.use("/api", contactInfoRoutes);
 app.use("/api", footerRoutes);
+app.use("/api/chat", aiRoute);
 // app.use("/api/blogs", blogRoutes);
 // app.use("/api/contact", contactRoutes);
 
