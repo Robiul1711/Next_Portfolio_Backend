@@ -22,6 +22,7 @@ app.use("/api", contactRoutes);
 app.use("/api", contactInfoRoutes);
 app.use("/api", footerRoutes);
 app.use("/api/chat", aiRoute);
+app.use('/api/blogs', blogRoutes);
 // app.use("/api/blogs", blogRoutes);
 // app.use("/api/contact", contactRoutes);
 
