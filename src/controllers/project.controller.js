@@ -129,3 +129,20 @@ export const deleteProject = async (req, res) => {
   }
 };
 
+// CLAP / REACT TO PROJECT
+export const clapProject = async (req, res) => {
+  try {
+    const project = await Project.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { claps: 1 } },
+      { new: true }
+    );
+    if (!project) {
+      return res.status(404).json({ success: false, message: "Project not found" });
+    }
+    res.status(200).json({ success: true, claps: project.claps });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+

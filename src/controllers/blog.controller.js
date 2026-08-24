@@ -105,3 +105,20 @@ export const deleteBlog = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// @desc    Clap / React to blog
+// @route   POST /api/blogs/:id/clap
+export const clapBlog = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const blog = await Blog.findByIdAndUpdate(
+      id,
+      { $inc: { claps: 1 } },
+      { new: true }
+    );
+    if (!blog) return res.status(404).json({ success: false, message: "Blog not found" });
+    res.status(200).json({ success: true, claps: blog.claps });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

@@ -1,4 +1,12 @@
 import mongoose from "mongoose";
+import dns from "node:dns";
+
+// Fix for Node.js querySrv ECONNREFUSED with MongoDB Atlas on Windows/local ISPs
+try {
+  dns.setServers(["8.8.8.8", "8.8.4.4"]);
+} catch (e) {
+  // fallback if environment does not allow setting custom DNS
+}
 
 const connectDB = async () => {
   try {
