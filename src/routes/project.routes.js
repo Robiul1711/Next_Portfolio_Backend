@@ -4,7 +4,8 @@ import {
   getProjects,
   getProjectById,
   updateProject,
-  deleteProject
+  deleteProject,
+  clapProject,
 } from "../controllers/project.controller.js";
 
 import upload from "../utils/cloudinaryUpload.js";
@@ -21,5 +22,6 @@ router.delete("/:id", protect, deleteProject);
 // 🌐 Public Routes
 router.get("/", getProjects);
 router.get("/:id", getProjectById);
+router.post("/:id/clap", clapProject);
 
 export default router;

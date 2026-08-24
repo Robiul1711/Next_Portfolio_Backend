@@ -10,6 +10,7 @@ const projectSchema = new mongoose.Schema(
     live: String,
     image: String,
     popular: { type: Boolean, default: false },
+    claps: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

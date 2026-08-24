@@ -25,6 +25,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  claps: {
+    type: Number,
+    default: 0,
+  },
 }, { timestamps: true });
 
 export default mongoose.model('Blog', blogSchema);
