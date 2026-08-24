@@ -1,8 +1,15 @@
 import Contact from "../models/Contact.js";
+import { sendContactEmails } from "../utils/sendEmail.js";
 
 export const createContactMessage = async (req, res) => {
   try {
     const newMessage = await Contact.create(req.body);
+
+    // Asynchronously send notification and auto-reply without blocking response
+    sendContactEmails(req.body).catch((err) =>
+      console.error("Email send error:", err.message)
+    );
+
     res.status(201).json({ message: "Message sent successfully", data: newMessage });
   } catch (err) {
     res.status(500).json({ error: err.message });

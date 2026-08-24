@@ -4,7 +4,8 @@ import {
   getBlogs, 
   generateAndCreateBlog, 
   updateBlog, 
-  deleteBlog 
+  deleteBlog,
+  clapBlog,
 } from '../controllers/blog.controller.js'; 
 
 const router = express.Router();
@@ -15,6 +16,9 @@ router.get('/', getBlogs);
 // POST a new blog (AI Generation)
 // 2. Use the new function name here
 router.post('/', generateAndCreateBlog);
+
+// Clap / React to a blog
+router.post('/:id/clap', clapBlog);
 
 // PUT (Update) - Requires an ID
 router.put('/:id', updateBlog);
