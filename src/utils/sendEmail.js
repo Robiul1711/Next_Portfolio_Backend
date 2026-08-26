@@ -5,14 +5,17 @@ const getTransporter = () => {
   const pass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
 
   if (!user || !pass) {
+    console.warn("⚠️ SMTP credentials missing in environment variables.");
     return null;
   }
 
+  // Use official 'gmail' service config for highest reliability across local and cloud (Render/Vercel)
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: Number(process.env.SMTP_PORT) || 465,
-    secure: true, // true for port 465
+    service: "gmail",
     auth: { user, pass },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 };
 
